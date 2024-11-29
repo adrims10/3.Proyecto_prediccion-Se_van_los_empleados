@@ -12,6 +12,7 @@ import psutil
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn import tree
+import pickle
 
 # Para realizar la clasificación y la evaluación del modelo
 # -----------------------------------------------------------------------
@@ -70,31 +71,37 @@ class AnalisisModelosClasificacion:
         # Parámetros predeterminados por modelo
         parametros_default = {
     "tree": {
-        'max_depth': [2, 4],  # Reducción en la profundidad del árbol
-        'min_samples_split': [10, 20, 50],  # Más muestras requeridas para dividir
-        'min_samples_leaf': [5, 10]  # Más muestras mínimas en hojas
-    },
+    'max_depth': [4, 5, 6],  # Permitir mayor profundidad para capturar más relaciones
+    'min_samples_split': [10, 20],  # Más datos necesarios para dividir nodos
+    'min_samples_leaf': [5, 10],  # Hojas con suficiente información para evitar sobreajuste
+    'max_features': [None, 'sqrt']  # Considerar todas las características o la raíz cuadrada
+}
+,
     "random_forest": {
-        'n_estimators': [50, 100],  # Reducción inicial en el número de árboles
-        'max_depth': [2, 4],  # Árboles más simples
-        'min_samples_split': [10, 20, 50],
-        'min_samples_leaf': [5, 10]
-    },
-    "gradient_boosting": {
-        'n_estimators': [50, 80],  # Menos estimadores
-        'learning_rate': [0.01, 0.05],  # Aprendizaje más lento
-        'max_depth': [2, 3],  # Árboles más pequeños
+        'n_estimators': [100, 150],  # Más árboles para robustez
+        'max_depth': [3, 4],
         'min_samples_split': [10, 20],
         'min_samples_leaf': [5, 10],
-        'subsample': [0.6, 0.8]  # Menor fracción de muestras para cada árbol
+        'max_features': ['sqrt', 0.8]  # Permitir más características
     },
+    "gradient_boosting": {
+    'n_estimators': [100, 150, 200],  # Más iteraciones para mejor aprendizaje
+    'learning_rate': [0.05, 0.1],  # Ajuste para encontrar un buen compromiso
+    'max_depth': [3, 4, 5],  # Incremento para capturar patrones más complejos
+    'min_samples_split': [10, 15],  # Divisiones con datos suficientes para evitar ruido
+    'min_samples_leaf': [5, 10],  # Requiere muestras suficientes en hojas
+    'subsample': [0.7, 0.9],  # Permitir más muestras en cada iteración
+    'max_features': ['sqrt', 0.8]  # Considerar más características por iteración
+},
     "xgboost": {
-        'n_estimators': [50, 100],
-        'learning_rate': [0.01, 0.05],
-        'max_depth': [2, 4],
-        'min_child_weight': [3, 5, 7],  # Incremento en el peso mínimo de hijos
-        'subsample': [0.6, 0.8],
-        'colsample_bytree': [0.6, 0.8]  # Usar menos columnas por árbol
+        'n_estimators': [100, 150],
+        'learning_rate': [0.05, 0.1],  # Ajustar para capturar más patrones
+        'max_depth': [3, 4],
+        'min_child_weight': [3, 5],
+        'subsample': [0.7, 0.9],
+        'colsample_bytree': [0.7, 0.9],  # Más columnas por árbol
+        'reg_alpha': [0.05, 0.1],  # Regularización más ligera
+        'reg_lambda': [0.5, 1.0]  # Menos penalización
     }
 }
 
@@ -117,6 +124,11 @@ class AnalisisModelosClasificacion:
             self.resultados[modelo_nombre]["mejor_modelo"] = grid_search.best_estimator_
             self.resultados[modelo_nombre]["pred_train"] = grid_search.best_estimator_.predict(self.X_train)
             self.resultados[modelo_nombre]["pred_test"] = grid_search.best_estimator_.predict(self.X_test)
+            try:
+                with open(f'mejor_modelo_{modelo_nombre}.pkl', 'wb') as f:
+                    pickle.dump(grid_search, f)
+            except:
+                pass
 
 
 
