@@ -69,34 +69,35 @@ class AnalisisModelosClasificacion:
 
         # Parámetros predeterminados por modelo
         parametros_default = {
-            "tree": {
-                'max_depth': [3, 5, 7, 10],
-                'min_samples_split': [2, 5, 10],
-                'min_samples_leaf': [1, 2, 4]
-            },
-            "random_forest": {
-                'n_estimators': [50, 100, 200],
-                'max_depth': [2, 6, 8, 20, 12, 16],
-                'min_samples_split': [2, 5, 10],
-                'min_samples_leaf': [1, 2, 4]
-            },
-            "gradient_boosting": {
-                'n_estimators': [100, 200],
-                'learning_rate': [0.01, 0.1, 0.2],
-                'max_depth': [3, 4, 5],
-                'min_samples_split': [2, 5, 10],
-                'min_samples_leaf': [1, 2, 4],
-                'subsample': [0.8, 1.0]
-            },
-            "xgboost": {
-                'n_estimators': [100, 200],
-                'learning_rate': [0.01, 0.1, 0.2],
-                'max_depth': [3, 4, 5],
-                'min_child_weight': [1, 3, 5],
-                'subsample': [0.8, 1.0],
-                'colsample_bytree': [0.8, 1.0]
-            }
-        }
+    "tree": {
+        'max_depth': [2, 4],  # Reducción en la profundidad del árbol
+        'min_samples_split': [10, 20, 50],  # Más muestras requeridas para dividir
+        'min_samples_leaf': [5, 10]  # Más muestras mínimas en hojas
+    },
+    "random_forest": {
+        'n_estimators': [50, 100],  # Reducción inicial en el número de árboles
+        'max_depth': [2, 4],  # Árboles más simples
+        'min_samples_split': [10, 20, 50],
+        'min_samples_leaf': [5, 10]
+    },
+    "gradient_boosting": {
+        'n_estimators': [50, 80],  # Menos estimadores
+        'learning_rate': [0.01, 0.05],  # Aprendizaje más lento
+        'max_depth': [2, 3],  # Árboles más pequeños
+        'min_samples_split': [10, 20],
+        'min_samples_leaf': [5, 10],
+        'subsample': [0.6, 0.8]  # Menor fracción de muestras para cada árbol
+    },
+    "xgboost": {
+        'n_estimators': [50, 100],
+        'learning_rate': [0.01, 0.05],
+        'max_depth': [2, 4],
+        'min_child_weight': [3, 5, 7],  # Incremento en el peso mínimo de hijos
+        'subsample': [0.6, 0.8],
+        'colsample_bytree': [0.6, 0.8]  # Usar menos columnas por árbol
+    }
+}
+
 
         if param_grid is None:
             param_grid = parametros_default.get(modelo_nombre, {})
