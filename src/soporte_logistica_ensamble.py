@@ -71,39 +71,39 @@ class AnalisisModelosClasificacion:
         # Parámetros predeterminados por modelo
         parametros_default = {
     "tree": {
-    'max_depth': [4, 5, 6],  # Permitir mayor profundidad para capturar más relaciones
-    'min_samples_split': [10, 20],  # Más datos necesarios para dividir nodos
-    'min_samples_leaf': [5, 10],  # Hojas con suficiente información para evitar sobreajuste
-    'max_features': [None, 'sqrt']  # Considerar todas las características o la raíz cuadrada
-}
-,
+        'max_depth': [2, 3], 
+        'min_samples_split': [20, 30],  
+        'min_samples_leaf': [10, 15], 
+        'max_features': ['sqrt', 0.6]  
+    },
     "random_forest": {
-        'n_estimators': [100, 150],  # Más árboles para robustez
-        'max_depth': [3, 4],
-        'min_samples_split': [10, 20],
-        'min_samples_leaf': [5, 10],
-        'max_features': ['sqrt', 0.8]  # Permitir más características
+        'n_estimators': [100, 150], 
+        'max_depth': [2, 3], 
+        'min_samples_split': [25, 30],  
+        'min_samples_leaf': [10, 15],  
+        'max_features': [0.6, 0.7]  
     },
     "gradient_boosting": {
-    'n_estimators': [100, 150, 200],  # Más iteraciones para mejor aprendizaje
-    'learning_rate': [0.05, 0.1],  # Ajuste para encontrar un buen compromiso
-    'max_depth': [3, 4, 5],  # Incremento para capturar patrones más complejos
-    'min_samples_split': [10, 15],  # Divisiones con datos suficientes para evitar ruido
-    'min_samples_leaf': [5, 10],  # Requiere muestras suficientes en hojas
-    'subsample': [0.7, 0.9],  # Permitir más muestras en cada iteración
-    'max_features': ['sqrt', 0.8]  # Considerar más características por iteración
-},
+        'n_estimators': [100, 150], 
+        'learning_rate': [0.02, 0.03],  
+        'max_depth': [2, 3], 
+        'min_samples_split': [20, 25],  
+        'min_samples_leaf': [10, 12], 
+        'subsample': [0.7, 0.8], 
+        'max_features': [0.6, 'sqrt'] 
+    },
     "xgboost": {
-        'n_estimators': [100, 150],
-        'learning_rate': [0.05, 0.1],  # Ajustar para capturar más patrones
-        'max_depth': [3, 4],
-        'min_child_weight': [3, 5],
-        'subsample': [0.7, 0.9],
-        'colsample_bytree': [0.7, 0.9],  # Más columnas por árbol
-        'reg_alpha': [0.05, 0.1],  # Regularización más ligera
-        'reg_lambda': [0.5, 1.0]  # Menos penalización
+        'n_estimators': [100, 150],  
+        'learning_rate': [0.02, 0.03],
+        'max_depth': [2, 3], 
+        'min_child_weight': [6, 8],  
+        'subsample': [0.7, 0.8],  
+        'colsample_bytree': [0.6, 0.7],  
+        'reg_alpha': [0.2, 0.3],  # Mayor regularización L1 (reduce complejidad)
+        'reg_lambda': [1.5, 2.0]  # Mayor regularización L2 (reduce magnitudes grandes)
     }
 }
+
 
 
         if param_grid is None:
