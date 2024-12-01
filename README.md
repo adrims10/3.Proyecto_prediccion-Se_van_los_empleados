@@ -56,15 +56,20 @@ Este proyecto utiliza Python 3.12.6.
 **Resultados , Conclusiones**
 
 -Hemos elegido el modelo xgboost como mejor modelo entranado.
+
 -Podemos obtener toda la informacion del resumen y las conclusiones en el archivo PDF subido donde se encuetra la manera de preprocesar los datos, los modelos que se     han entrenado y un modelo predictivo bastante buento.
+
 -Para mas informacion en cada notebook se añaden descripciones concisas de cada paso que se da en el preprocesamiento en el modelado y prediccion del modelo.
 
 
 **Proximos pasos**
 
 -Seguir entrenando el modelo mediante los hiperparametos.
+
 -Añadir mas datos al modelo.
+
 -Tratamiento de datos de manera diferente para optimizar si se puede el train del modelo.
+
 
 
 ![OIP](https://github.com/user-attachments/assets/a3261f22-9193-45df-bf33-14a396dfd988)
