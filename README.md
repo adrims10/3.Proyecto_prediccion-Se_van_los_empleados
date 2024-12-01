@@ -50,13 +50,6 @@ Este proyecto utiliza Python 3.12.6.
 - **matplotlib.pyplot**  
   Herramienta para crear visualizaciones básicas y avanzadas en Python.  
   - [Documentación de Matplotlib](https://matplotlib.org/stable/contents.html)
-  - 
-
-### **Instalación de librerías**  
-Puedes instalar las dependencias necesarias ejecutando:  
-```bash
-pip install pandas numpy matplotlib seaborn
-
 
 
 
