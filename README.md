@@ -1,4 +1,9 @@
 # Proyecto: Predicción de Retención de Empleados 🏢
+![OIP (3)](https://github.com/user-attachments/assets/14183db5-eff2-4f77-9d41-962bbec3bcf0)
+
+Bienvenidos! 
+
+# *Es un placer recibirlos*
 
 ## Introducción
 
@@ -8,149 +13,63 @@ En este proyecto, vamos a enfrentarnos a la tarea de desentrañar patrones, anal
 
 Pero esto no es solo sobre números y gráficos; se trata de entender cómo las decisiones empresariales impactan la vida de las personas y cómo, con un poco de análisis, podríamos ayudar a las empresas a ser mejores lugares para trabajar. Así que prepárate para explorar datos, ensuciarte las manos con algoritmos y, quién sabe, tal vez descubrir el secreto para mantener a los empleados felices y comprometidos.
 
-## Descripción de los Datos
+## 🗂️ Estructura del Proyecto
 
-- `employee_survey_data.csv`: Contiene datos de encuestas sobre la satisfacción y percepción de los empleados.
+    ├── notebooks/           # Notebooks de Jupyter donde se encontraran la exploracion el train del modelo y una predicción.
+    ├── src/                 # Soportes de funciones.
+    ├─  Datos                # Datos para el estudio del modelo.
+    ├─  Datos_pkl            # Datos pkl despues del preprocesamiento de los datos.
+    ├── README.md            # Descripción del proyecto.
+    ├── PDF                  # PDF con la presentación y las conclusiones de todo el estudio.
 
-- `general_data.csv`: Información demográfica y general de los empleados
 
-- `manager_survey_data.csv`: Encuestas realizadas por los supervisores sobre desempeño y satisfacción.
+## 🛠️ Instalación y Requisitos  
+Este proyecto utiliza Python 3.12.6.
 
-**NOTA** Dentro de la carpeta de datos, encontrarás un archivo `diccionario-datos` donde encontrarás la descripción detallada de todos los datos aportados. 
+### **Librerías utilizadas**  
+- **pandas**  
+  Utilizado para la manipulación y análisis de datos.  
+  - [Documentación de Pandas](https://pandas.pydata.org/pandas-docs/stable/)  
 
-## Estructura del Proyecto
+- **numpy**  
+  Ayuda en cálculos numéricos eficientes y matrices multidimensionales.  
+  - [Documentación de NumPy](https://numpy.org/doc/)  
 
-Este proyecto está dividido en varias etapas las cuales son: 
+- **os**  
+  Gestiona las operaciones del sistema operativo, como la navegación de directorios.  
+  - [Documentación de os](https://docs.python.org/3/library/os.html)  
 
-1. **Exploración de los datos**: Debes analizar las características disponibles y tomar las primeras decisiones clave:
+- **sys**  
+  Permite acceder a variables y funciones específicas del intérprete de Python.  
+  - [Documentación de sys](https://docs.python.org/3/library/sys.html)  
 
-    - **Limpieza de datos**: Busca y maneja valores nulos, duplicados o inconsistencias que puedan afectar la calidad de tu análisis.
+- **seaborn**  
+  Facilita la creación de gráficos estadísticos atractivos y fáciles de interpretar.  
+  - [Documentación de Seaborn](https://seaborn.pydata.org/)  
 
-    - **Entendimiento de las variables**: Identifica las variables relevantes, sus tipos y posibles relaciones entre ellas. Por ejemplo, ¿qué variables parecen estar relacionadas con la decisión de quedarse o irse?
+- **matplotlib.pyplot**  
+  Herramienta para crear visualizaciones básicas y avanzadas en Python.  
+  - [Documentación de Matplotlib](https://matplotlib.org/stable/contents.html)  
 
-    - **Correlaciones y tendencias**: Usa herramientas estadísticas básicas para identificar correlaciones significativas. Esto te ayudará a entender qué factores tienen mayor impacto.
+### **Instalación de librerías**  
+Puedes instalar las dependencias necesarias ejecutando:  
+```bash
+pip install pandas numpy matplotlib seaborn
 
+**Resultados , Conclusiones**
 
+-Hemos elegido el modelo xgboost como mejor modelo entranado.
+-Podemos obtener toda la informacion del resumen y las conclusiones en el archivo PDF subido donde se encuetra la manera de preprocesar los datos, los modelos que se     han entrenado y un modelo predictivo bastante buento.
+-Para mas informacion en cada notebook se añaden descripciones concisas de cada paso que se da en el preprocesamiento en el modelado y prediccion del modelo.
 
 
-2. **Análisis Exploratorio de Datos (EDA)**: Debes profundizar en los datos para descubrir patrones y tendencias importantes. Esto incluye:
+**Proximos pasos**
 
-    - **Visualización de datos**: Crea gráficos como histogramas, boxplots y gráficos de dispersión para entender mejor la distribución de las variables y sus relaciones.
+-Seguir entrenando el modelo mediante los hiperparametos.
+-Añadir mas datos al modelo.
+-Tratamiento de datos de manera diferente para optimizar si se puede el train del modelo.
 
-    - **Impacto de las variables**: Examina cómo factores como la satisfacción laboral, las horas trabajadas o el nivel de desempeño están relacionados con la retención.
 
-    - **Detección de sesgos**: Asegúrate de que no haya sesgos en los datos que puedan influir en los resultados del modelo.
+![OIP](https://github.com/user-attachments/assets/a3261f22-9193-45df-bf33-14a396dfd988)
 
 
-
-3. **Preparación del Modelo**: Antes de construir el modelo, debes preparar los datos adecuadamente. Este paso incluye:
-
-    - **División de datos**: Divide el conjunto de datos en conjuntos de entrenamiento (training) y prueba (test) para evaluar el modelo de manera justa.
-
-    - **Preprocesamiento**:
-
-        - Normaliza o estandariza las variables si es necesario (por ejemplo, escalando variables como salarios o horas trabajadas).
-
-        - Convierte variables categóricas en un formato utilizable, como codificación one-hot.
-
-        - **Balanceo de clases**: Si las categorías "se queda" y "se va" están desequilibradas, considera técnicas como sobremuestreo o     submuestreo.
-
-
-4. **Construcción del Modelo**: Es hora de construir y evaluar diferentes algoritmos de machine learning. Aquí deberás:
-
-    - **Probar múltiples algoritmos**: Implementa al menos dos algoritmos de clasificación, como árboles de decisión, regresión logística o bosques aleatorios.
-
-    - **Evaluar el desempeño**: Usa métricas como:
-        - **Precisión**: ¿Qué tan bien clasifica el modelo?
-
-        - **F1-score**: ¿Qué tan equilibrado es entre precisión y sensibilidad?
-
-        - **Matriz de confusión**: Analiza los verdaderos positivos, verdaderos negativos, falsos positivos y falsos negativos.
-
-        - etc. 
-
-    - **Optimización del modelo**: Ajusta hiperparámetros para mejorar el desempeño, utilizando herramientas como GridSearchCV.
-
-
-5. **Conclusiones**: La etapa final consiste en analizar los resultados obtenidos y proponer estrategias prácticas. Esto incluye:
-
-    - **Resumen de hallazgos**: ¿Cuáles son los factores más relevantes que afectan la retención de empleados? ¿Qué variables tienen mayor peso en las predicciones del modelo?
-
-    - **Recomendaciones**: Basándote en el análisis y el modelo, sugiere acciones que la empresa podría tomar para mejorar la retención.
-
-    - Por ejemplo, ¿se deben ajustar las políticas de horarios flexibles? ¿O tal vez invertir más en programas de bienestar?
-
-    - **Evaluación del proyecto**: Reflexiona sobre los puntos fuertes y débiles de tu modelo y cómo podría mejorarse.
-
-
-## Como Entregar el Proyecto
-
-La entrega del proyecto se realizará a través de una **issue en GitHub**, trabajando en un repositorio propio en tu cuenta personal. Los pasos que deberás seguir para hacer la entrega del proyecto son:
-
-
-- **Crear un nuevo repositorio en tu cuenta de GitHub:**
-
-   - Crea un nuevo repositorio llamado `Proyecto8-NombreProyecto`. Este nombre es obligatorio, no podremos llamarlo de otra forma. 
-
-   - Configuralo como público. 
-
-
-- **Desarrolla el proyecto:**
-
-   - Implementa el código para la resolución del problema.
-
-   - Recuerda hacer commits regulares mientras avanzas en el desarrollo:
-
-     ```bash
-     git add .
-     git commit -m "Descripción del avance"
-     git push
-     ```
-
-
-- **Crear una issue en el repositorio original del curso:**
-
-   - Ve al repositorio original del curso y dirígete a la pestaña de **Issues**.
-
-- **Abrir una nueva issue para tu entrega:**
-
-   - Haz clic en **New Issue** y llena los siguientes campos:
-
-     - **Título:** Usa el formato "Entrega Proyecto: ProyectoClasificacion - [Tu Nombre]".
-
-     - **Descripción:** En la descripción, incluye:
-
-       - Una breve explicación de tu proyecto.
-
-       - Instrucciones para ejecutar tu código (si aplica).
-
-       - Un enlace a tu repositorio personal donde está alojado el proyecto.
-
-
-## 🚀 Entrega del Proyecto 🚀
-
-**Fecha y hora límite:**
-
-🗓️ **Lunes a las 9:00 AM.**
-
-
-**Nota importante:**
-
-⚠️ **Todos los proyectos que sean entregados o modificados después de la hora límite (lunes a las 9:00 AM) se considerarán como no entregados.** Por favor, asegúrate de completar y enviar tu trabajo a tiempo para evitar problemas.
-
-
-# 🎤 Presentación de Proyectos 🎤
-
-El lunes tendremos las **presentaciones de los proyectos**. La dinámica será la siguiente:
-
-- De forma **aleatoria**, seleccionaremos entre **3 y 5 alumnos** para presentar su proyecto.
-
-- Cada alumno tendrá **5 minutos** para explicar su proyecto y hacer una demo en vivo. Durante este tiempo podrán mostrar cómo funciona su juego y resaltar las características principales.
-
-**Detalles importantes:**
-
-- Es importante que lleguéis puntuales, ya que comenzaremos las presentaciones de inmediato.
-
-- Asegúrate de que tu código esté listo y funcional para la demo.
-
-- Todos debemos estar preparados para presentar, ya que la selección será completamente aleatoria.
