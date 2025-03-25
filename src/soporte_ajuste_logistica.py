@@ -8,6 +8,9 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn import tree
+from category_encoders import TargetEncoder
+from imblearn.over_sampling import SMOTENC
+from sklearn.model_selection import train_test_split
 
 # Para realizar la clasificación y la evaluación del modelo
 # -----------------------------------------------------------------------
