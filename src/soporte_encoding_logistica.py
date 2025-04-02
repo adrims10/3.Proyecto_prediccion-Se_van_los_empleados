@@ -64,9 +64,11 @@ class AnalisisChiCuadrado:
 
         chi2, p, dof, expected = chi2_contingency(self.tabla_contingencia)
         self.resultado_chi2 = {
-            "Chi2": chi2,
-            "p_valor": p
-        }
+        "Chi2": float(chi2),
+        "p_valor": float(p),
+        "grados_de_libertad": int(dof),
+        "esperado": expected
+    }
 
         print(f"\nResultado de la prueba de Chi-cuadrado:")
         print(f"Chi2: {chi2}, p-valor: {p}")
