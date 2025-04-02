@@ -12,9 +12,9 @@ Vamos a ir comparando varios modelos predictivos para ver cuál es el modelo que
 
 ## 🗂️ Estructura del Proyecto
 
-    ├── notebooks/           # Notebooks de Jupyter donde se encontraran la exploracion de los datos y el                                            # preprocesamiento para el train del modelo, el train del mismo y una predicción.
+    ├── notebooks/           # Notebooks de Jupyter donde se encontraran la exploracion de los datos y el preprocesamiento para el train del modelo, el train del mismo y una predicción.
     ├── src/                 # Soportes de funciones.
-    ├─  Datos                # Datos originales para el estudio del modelo, donde tambien se encuentra un diccionario                                #para enterder las variables que hemos utilizado.
+    ├─  Datos                # Datos originales para el estudio del modelo, donde tambien se encuentra un diccionario para enterder las variables que hemos utilizado.
     ├─  Datos_pkl            # Datos pkl despues del preprocesamiento de los datos.
     ├── README.md            # Descripción del proyecto.
 
