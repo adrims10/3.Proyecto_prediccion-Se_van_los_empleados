@@ -1,27 +1,22 @@
-![Clasificacion](https://github.com/user-attachments/assets/129ccd84-c9a8-44a9-8cef-6e07e4da19a4)
-Predicción de Retención de Empleados 🏢
+![Clasificacion](https://github.com/user-attachments/assets/316d013a-7709-4531-907a-70d3bded555a)
 
 
-Bienvenidos! 
+# Predicción de Retención de Empleados 🏢
 
-# *Es un placer recibirlos*
+Dados una serie de datos nos vamos a enfrentar a  intentar predecir si un empleado se va a ir de la empresa o no.
 
-## Introducción
+En este proyecto, vamos a enfrentarnos a la tarea de desentrañar patrones, analizar tendencias y construir un modelo que pueda predecir si un empleado permanecerá o decidirá decir adiós segun una serie de variables dadas.
 
-Esta vez nos toca trabajar en Recursos Humanos y nos enfrentamos a uno de los mayores dolores de cabeza de cualquier empresa: la rotación de empleados. ¿Por qué algunas personas deciden quedarse mientras otras se van? ¿Será el salario? ¿Las horas extra? ¿La relación con su jefe?
+Vamos a ir comparando varios modelos predictivos para ver cual es el modelo que mejor funciona para acabar montando nuestro predictor.
 
-En este proyecto, vamos a enfrentarnos a la tarea de desentrañar patrones, analizar tendencias y construir un modelo que pueda predecir si un empleado permanecerá o decidirá decir adiós.
-
-Pero esto no es solo sobre números y gráficos; se trata de entender cómo las decisiones empresariales impactan la vida de las personas y cómo, con un poco de análisis, podríamos ayudar a las empresas a ser mejores lugares para trabajar. Así que prepárate para explorar datos, ensuciarte las manos con algoritmos y, quién sabe, tal vez descubrir el secreto para mantener a los empleados felices y comprometidos.
 
 ## 🗂️ Estructura del Proyecto
 
-    ├── notebooks/           # Notebooks de Jupyter donde se encontraran la exploracion el train del modelo y una predicción.
+    ├── notebooks/           # Notebooks de Jupyter donde se encontraran la exploracion de los datos y el                                             preprocesamiento para el train del modelo, el train del mismo y una predicción.
     ├── src/                 # Soportes de funciones.
-    ├─  Datos                # Datos para el estudio del modelo.
+    ├─  Datos                # Datos originales para el estudio del modelo, donde tambien se encuentra un diccionario                                   para enterder las variables que hemos utilizado.
     ├─  Datos_pkl            # Datos pkl despues del preprocesamiento de los datos.
     ├── README.md            # Descripción del proyecto.
-    ├── PDF                  # PDF con la presentación y las conclusiones de todo el estudio.
 
 
 ## 🛠️ Instalación y Requisitos  
@@ -52,27 +47,48 @@ Este proyecto utiliza Python 3.12.6.
   Herramienta para crear visualizaciones básicas y avanzadas en Python.  
   - [Documentación de Matplotlib](https://matplotlib.org/stable/contents.html)
 
+  *## Conlusiones del Proyecto*
+
+## 🛠️ Preprocesamiento.
+
+Durante el preprocesamiento y el estudio de los datos, llegamos a la conclusion de que habia 4 variables las cuales no nos iban a afectar a nuestra predicción puesto que solo era un dato unico por lo que decidimos borrar estas variables: Numero de empleados = 1
+Mayor de 18 años = Yes
+EmployeeID = Valor unico de identidad del empleado
+Horas estandar = 8 horas
+
+Seguimos con la gestion de nulos y observamos que no tenemos nulos en la variables que de primeras se consideran categorica y que tenemos un infimo porcentaje de nulos en las variables numericas, por lo que imputamos los nulos de las numericas con el metodo knn con los 5 vecinos mas cercanos.
+
+El proximos paso es identificar los outliers donde tras observacion y calculo mediante IQR y Epilso  Dbscan, decidimos dejarlos sin tratar puesto que es una informacion demasiado relevante para el modelo.
+
+Una vez tratados los puntos anteriores comenzamos a escalar las variables numericas, como observamos que hay variables categoricas que se pueden escalar porque son numeros por ejemplo nivel de educacion y mas... convertimos a numero decimal (float)  realizamos el metodo standar scaler , en este caso porque tenemos variables numericas con mucha diferencia de rangos y con el standar evitamos que las de mayor rango puedan dominar el modelo afectando asi a su rendimiento.
+
+Pasamos a encodear variables categoricas, realizando una prueba de chi_cuadrado para ver si hay diferencias entre los grupos y asi encodear con un metodo u otro. Usamos target econding para las que no tienen diferencias y One hot ecoding para las que si las tienen en su comparativa con la variable respuesta 'Attrition'.
+
+Por ultimo observamos el balanceo de la variable respuesta  vemos un gran balanceo hacia el no se van por lo que decidimos usar un metodo de balanceo Smotenc. Usamos SMOTENC porque es ideal para datasets mixtos como este, donde hay una combinación de variables categóricas y numéricas, y se necesita abordar el problema del desbalanceo de clases.
+
+## 🛠️ Entrenamiento del modelo.
+
+Entrenamos el modelo mediante Regresion logistica, decision tree , random forest, gradient boosting y xgboost.
+Quedandonos con xgboost para el predictor puesto que vemos que no hay sobreajuste tanto en el Acuracy siendo el train 0.92 con un excelente rendimiento y siendo es test de 0.89 como en el AUC siendo el train de este 0.97 discriminando de manera excelente y en el test 0.95 lo cual no nos deja señales de overfiting.
+La precision el racall y el Kappa tambien tienen metricas muy buena para la posible prediccion.
+
+## 🛠️ Prediccion.
+
+En el ultimo archivo notebook hemos creado un caso de uso de un empleado con una serie de caracteristicay hemos realizado una prediccion con nuestro modelo xgboost entrenado.
 
 
-**Resultados , Conclusiones**
+Si quieres ver mas proyectos de Python u otras tecnologias no dudes visitar mi repositorio [adrims10](https://github.com/adrims10)
 
--Hemos elegido el modelo xgboost como mejor modelo entranado.
-
--Podemos obtener toda la informacion del resumen y las conclusiones en el archivo PDF subido donde se encuetra la manera de preprocesar los datos, los modelos que se     han entrenado y un modelo predictivo bastante buento.
-
--Para mas informacion en cada notebook se añaden descripciones concisas de cada paso que se da en el preprocesamiento en el modelado y prediccion del modelo.
-
-
-**Proximos pasos**
-
--Seguir entrenando el modelo mediante los hiperparametos.
-
--Añadir mas datos al modelo.
-
--Tratamiento de datos de manera diferente para optimizar si se puede el train del modelo.
+**Adrián Moreno**
 
 
 
-![OIP](https://github.com/user-attachments/assets/a3261f22-9193-45df-bf33-14a396dfd988)
+
+
+
+
+
+
+
 
 
