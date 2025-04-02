@@ -1,5 +1,6 @@
-# Proyecto: Predicción de Retención de Empleados 🏢
-![OIP (3)](https://github.com/user-attachments/assets/14183db5-eff2-4f77-9d41-962bbec3bcf0)
+![Clasificacion](https://github.com/user-attachments/assets/129ccd84-c9a8-44a9-8cef-6e07e4da19a4)
+Predicción de Retención de Empleados 🏢
+
 
 Bienvenidos! 
 
